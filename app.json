@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "GRVTY: Ride the Mountain",
+    "slug": "grvty-ride-the-mountain",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#06111f"
+      }
+    }
+  }
+}
