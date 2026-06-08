@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { ForceBar } from "../components/ForceBar";
+import { ForceCard } from "../components/ForceCard";
 import { Screen } from "../components/Screen";
 import { brand, weeklyMountain, weeklyStory } from "../mockData";
 
@@ -17,11 +17,13 @@ export function WeeklyStoryScreen() {
         <Text style={styles.copy}>Strong core. Calm balance. Team discipline.</Text>
       </View>
 
-      <View style={styles.goalPanel}>
-        <Text style={styles.goalTitle}>{weeklyStory.goal}</Text>
-        <ForceBar
+      <View style={styles.goalWrap}>
+        <ForceCard
+          caption={weeklyStory.goal}
           current={weeklyMountain.currentForce}
-          label="Mountain Goal"
+          force={weeklyMountain.currentForce}
+          label="Mountain Force"
+          progressLabel="Boss Gate"
           target={weeklyMountain.targetForce}
         />
       </View>
@@ -68,20 +70,8 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     marginTop: 8
   },
-  goalPanel: {
-    backgroundColor: "#0d2135",
-    borderColor: "#1d3855",
-    borderRadius: 8,
-    borderWidth: 1,
-    marginTop: 16,
-    padding: 16
-  },
-  goalTitle: {
-    color: "#ffffff",
-    fontSize: 18,
-    fontWeight: "900",
-    lineHeight: 24,
-    marginBottom: 14
+  goalWrap: {
+    marginTop: 16
   },
   anthemPanel: {
     backgroundColor: "#123456",

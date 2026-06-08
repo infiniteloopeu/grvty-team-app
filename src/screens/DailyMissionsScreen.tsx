@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { MissionCard } from "../components/MissionCard";
+import { ForceCard } from "../components/ForceCard";
+import { MissionItem } from "../components/MissionItem";
 import { Screen } from "../components/Screen";
 import { missions } from "../mockData";
 
@@ -19,26 +20,28 @@ export function DailyMissionsScreen({
   onToggleMission,
   todayForce
 }: DailyMissionsScreenProps) {
+  const forceCaption = allComplete
+    ? `All missions complete. Bonus added: +${bonusForce} Force.`
+    : "Clear every gate to unlock a +200 Force bonus.";
+
   return (
     <Screen
       kicker="Daily Missions"
       title="Power Today's Run"
       subtitle="Tap each mission when it is done. Every point of Force helps the whole team climb."
     >
-      <View style={styles.forcePanel}>
-        <Text style={styles.label}>Today's Force</Text>
-        <Text style={styles.total}>{todayForce}</Text>
-        <Text style={styles.message}>
-          {allComplete
-            ? `All missions complete. Bonus added: +${bonusForce} Force.`
-            : "Finish the full board to unlock a +200 Force bonus."}
-        </Text>
-      </View>
+      <ForceCard
+        accent={allComplete ? "green" : "gold"}
+        caption={forceCaption}
+        force={todayForce}
+        label="Today's Force"
+      />
 
       <View style={styles.list}>
-        {missions.map((mission) => (
-          <MissionCard
+        {missions.map((mission, index) => (
+          <MissionItem
             completed={completedMissionIds.includes(mission.id)}
+            index={index}
             key={mission.id}
             mission={mission}
             onToggle={() => onToggleMission(mission.id)}
@@ -59,38 +62,12 @@ export function DailyMissionsScreen({
 }
 
 const styles = StyleSheet.create({
-  forcePanel: {
-    backgroundColor: "#102b46",
-    borderColor: "#7ed7ff",
-    borderRadius: 8,
-    borderWidth: 1,
-    marginBottom: 16,
-    padding: 16
-  },
-  label: {
-    color: "#7ed7ff",
-    fontSize: 12,
-    fontWeight: "900",
-    textTransform: "uppercase"
-  },
-  total: {
-    color: "#ffffff",
-    fontSize: 52,
-    fontWeight: "900",
-    lineHeight: 58,
-    marginTop: 4
-  },
-  message: {
-    color: "#dcecff",
-    fontSize: 14,
-    fontWeight: "800",
-    lineHeight: 20
-  },
   list: {
-    gap: 12
+    gap: 12,
+    marginTop: 16
   },
   bonusCard: {
-    backgroundColor: "#0d2135",
+    backgroundColor: "#0b1b2d",
     borderColor: "#1d3855",
     borderRadius: 8,
     borderWidth: 1,

@@ -11,6 +11,8 @@ type MyRacerScreenProps = {
 };
 
 export function MyRacerScreen({ completedCount, stats }: MyRacerScreenProps) {
+  const statAccents = ["#ef5d60", "#7ed7ff", "#f4d35e", "#a8f0c4", "#b993ff"];
+
   return (
     <Screen
       kicker="My Racer"
@@ -19,7 +21,10 @@ export function MyRacerScreen({ completedCount, stats }: MyRacerScreenProps) {
     >
       <View style={styles.hero}>
         <View style={styles.avatar}>
+          <View style={styles.skiLeft} />
+          <View style={styles.skiRight} />
           <View style={styles.helmet} />
+          <View style={styles.goggles} />
           <View style={styles.face} />
           <View style={styles.body} />
         </View>
@@ -33,8 +38,13 @@ export function MyRacerScreen({ completedCount, stats }: MyRacerScreenProps) {
       <View style={styles.statsPanel}>
         <Text style={styles.sectionTitle}>Racer Stats</Text>
         <View style={styles.statsList}>
-          {Object.entries(stats).map(([key, value]) => (
-            <StatBar key={key} label={key} value={value} />
+          {Object.entries(stats).map(([key, value], index) => (
+            <StatBar
+              accentColor={statAccents[index]}
+              key={key}
+              label={key}
+              value={value}
+            />
           ))}
         </View>
       </View>
@@ -45,8 +55,8 @@ export function MyRacerScreen({ completedCount, stats }: MyRacerScreenProps) {
 const styles = StyleSheet.create({
   hero: {
     alignItems: "center",
-    backgroundColor: "#0d2135",
-    borderColor: "#1d3855",
+    backgroundColor: "#0b1b2d",
+    borderColor: "#315d80",
     borderRadius: 8,
     borderWidth: 1,
     flexDirection: "row",
@@ -55,7 +65,7 @@ const styles = StyleSheet.create({
   },
   avatar: {
     alignItems: "center",
-    backgroundColor: "#dcecff",
+    backgroundColor: "#eef7ff",
     borderRadius: 8,
     height: 142,
     justifyContent: "center",
@@ -63,7 +73,7 @@ const styles = StyleSheet.create({
     width: 116
   },
   helmet: {
-    backgroundColor: "#f4d35e",
+    backgroundColor: "#ef5d60",
     borderRadius: 34,
     height: 66,
     position: "absolute",
@@ -86,6 +96,35 @@ const styles = StyleSheet.create({
     height: 70,
     position: "absolute",
     width: 88
+  },
+  goggles: {
+    backgroundColor: "#071320",
+    borderRadius: 8,
+    height: 16,
+    position: "absolute",
+    top: 60,
+    width: 60,
+    zIndex: 2
+  },
+  skiLeft: {
+    backgroundColor: "#4da3ff",
+    bottom: 10,
+    height: 5,
+    left: 14,
+    position: "absolute",
+    transform: [{ rotate: "-15deg" }],
+    width: 48,
+    zIndex: 3
+  },
+  skiRight: {
+    backgroundColor: "#ef5d60",
+    bottom: 10,
+    height: 5,
+    position: "absolute",
+    right: 14,
+    transform: [{ rotate: "15deg" }],
+    width: 48,
+    zIndex: 3
   },
   levelPanel: {
     flex: 1
@@ -111,7 +150,7 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   statsPanel: {
-    backgroundColor: "#0d2135",
+    backgroundColor: "#0b1b2d",
     borderColor: "#1d3855",
     borderRadius: 8,
     borderWidth: 1,

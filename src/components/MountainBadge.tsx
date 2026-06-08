@@ -10,16 +10,19 @@ export function MountainBadge({ label, value }: MountainBadgeProps) {
     <View style={styles.badge}>
       <View style={styles.peakBack} />
       <View style={styles.peakFront} />
+      <View style={styles.gateOne} />
+      <View style={styles.gateTwo} />
       <Text style={styles.label}>{label}</Text>
       <Text style={styles.value}>{value}</Text>
+      <Text style={styles.caption}>Slalom course is open</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   badge: {
-    backgroundColor: "#0d2135",
-    borderColor: "#1d3855",
+    backgroundColor: "#0b1b2d",
+    borderColor: "#315d80",
     borderRadius: 8,
     borderWidth: 1,
     minHeight: 178,
@@ -28,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   peakBack: {
-    borderBottomColor: "#23435e",
+    borderBottomColor: "#244b6a",
     borderBottomWidth: 118,
     borderLeftColor: "transparent",
     borderLeftWidth: 92,
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     width: 0
   },
   peakFront: {
-    borderBottomColor: "#dcecff",
+    borderBottomColor: "#eef7ff",
     borderBottomWidth: 92,
     borderLeftColor: "transparent",
     borderLeftWidth: 70,
@@ -61,8 +64,32 @@ const styles = StyleSheet.create({
   },
   value: {
     color: "#ffffff",
-    fontSize: 28,
+    fontSize: 27,
     fontWeight: "900",
     marginTop: 6
+  },
+  caption: {
+    color: "#a9bdd2",
+    fontSize: 13,
+    fontWeight: "800",
+    marginTop: 6
+  },
+  gateOne: {
+    backgroundColor: "#ef5d60",
+    height: 68,
+    position: "absolute",
+    right: 62,
+    top: 78,
+    transform: [{ rotate: "10deg" }],
+    width: 5
+  },
+  gateTwo: {
+    backgroundColor: "#4da3ff",
+    height: 66,
+    position: "absolute",
+    right: 116,
+    top: 98,
+    transform: [{ rotate: "-9deg" }],
+    width: 5
   }
 });

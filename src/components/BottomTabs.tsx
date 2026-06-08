@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingBottom: 10,
     paddingTop: 10,
-    backgroundColor: "#071526",
-    borderTopColor: "#1d3855",
+    backgroundColor: "#071320",
+    borderTopColor: "#315d80",
     borderTopWidth: 1
   },
   tab: {
@@ -52,17 +52,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 3
   },
   activeTab: {
-    backgroundColor: "#102b46"
+    backgroundColor: "#102b46",
+    borderColor: "#7ed7ff",
+    borderWidth: 1
   },
   tabMarker: {
-    width: 18,
+    width: 22,
     height: 5,
     borderRadius: 3,
-    backgroundColor: "#294560",
+    backgroundColor: "#ef5d60",
     marginBottom: 7
   },
   activeMarker: {
-    backgroundColor: "#7ed7ff"
+    backgroundColor: "#f4d35e"
   },
   tabLabel: {
     color: "#a9bdd2",

@@ -1,33 +1,37 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { ForceBar } from "../components/ForceBar";
+import { ForceCard } from "../components/ForceCard";
 import { Screen } from "../components/Screen";
+import { TeamMemberRow } from "../components/TeamMemberRow";
 import { ropeTeam } from "../mockData";
 
 export function RopeTeamScreen() {
+  const memberTarget = ropeTeam.targetForce / ropeTeam.members.length;
+
   return (
     <Screen
       kicker="Rope Team"
       title={ropeTeam.squadName}
       subtitle="Small squad, strong rope. Everyone's Force matters."
     >
-      <View style={styles.goalPanel}>
-        <ForceBar
-          current={ropeTeam.currentForce}
-          label="Squad Goal"
-          target={ropeTeam.targetForce}
-        />
-      </View>
+      <ForceCard
+        accent="green"
+        caption="Avalanche Squad is pulling the rope toward the weekly gate."
+        current={ropeTeam.currentForce}
+        force={ropeTeam.currentForce}
+        label="Squad Force"
+        progressLabel="Squad Goal"
+        target={ropeTeam.targetForce}
+      />
 
       <View style={styles.memberList}>
         {ropeTeam.members.map((member, index) => (
-          <View key={member.name} style={styles.memberCard}>
-            <View style={styles.rank}>
-              <Text style={styles.rankText}>{index + 1}</Text>
-            </View>
-            <Text style={styles.memberName}>{member.name}</Text>
-            <Text style={styles.memberForce}>{member.weeklyForce.toLocaleString()} Force</Text>
-          </View>
+          <TeamMemberRow
+            key={member.name}
+            member={member}
+            rank={index + 1}
+            targetForce={memberTarget}
+          />
         ))}
       </View>
 
@@ -49,45 +53,11 @@ const styles = StyleSheet.create({
     padding: 16
   },
   memberList: {
-    gap: 10
-  },
-  memberCard: {
-    alignItems: "center",
-    backgroundColor: "#0d2135",
-    borderColor: "#1d3855",
-    borderRadius: 8,
-    borderWidth: 1,
-    flexDirection: "row",
-    minHeight: 64,
-    paddingHorizontal: 14
-  },
-  rank: {
-    alignItems: "center",
-    backgroundColor: "#f4d35e",
-    borderRadius: 8,
-    height: 34,
-    justifyContent: "center",
-    width: 34
-  },
-  rankText: {
-    color: "#06111f",
-    fontSize: 16,
-    fontWeight: "900"
-  },
-  memberName: {
-    color: "#ffffff",
-    flex: 1,
-    fontSize: 18,
-    fontWeight: "900",
-    marginLeft: 12
-  },
-  memberForce: {
-    color: "#a8f0c4",
-    fontSize: 14,
-    fontWeight: "900"
+    gap: 10,
+    marginTop: 16
   },
   messagePanel: {
-    backgroundColor: "#123456",
+    backgroundColor: "#122942",
     borderRadius: 8,
     marginTop: 16,
     padding: 18
