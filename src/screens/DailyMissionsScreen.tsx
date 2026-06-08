@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { ForceCard } from "../components/ForceCard";
 import { MissionItem } from "../components/MissionItem";
@@ -10,6 +10,7 @@ type DailyMissionsScreenProps = {
   bonusForce: number;
   completedMissionIds: string[];
   todayForce: number;
+  onResetProgress: () => void;
   onToggleMission: (missionId: string) => void;
 };
 
@@ -17,6 +18,7 @@ export function DailyMissionsScreen({
   allComplete,
   bonusForce,
   completedMissionIds,
+  onResetProgress,
   onToggleMission,
   todayForce
 }: DailyMissionsScreenProps) {
@@ -57,6 +59,10 @@ export function DailyMissionsScreen({
             : "Complete every mission today to light up the bonus."}
         </Text>
       </View>
+
+      <Pressable accessibilityRole="button" onPress={onResetProgress} style={styles.resetButton}>
+        <Text style={styles.resetButtonText}>Reset Demo Progress</Text>
+      </Pressable>
     </Screen>
   );
 }
@@ -89,5 +95,22 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 20,
     marginTop: 6
+  },
+  resetButton: {
+    alignItems: "center",
+    backgroundColor: "#1a2736",
+    borderColor: "#ef5d60",
+    borderRadius: 8,
+    borderWidth: 1,
+    justifyContent: "center",
+    marginTop: 14,
+    minHeight: 54,
+    paddingHorizontal: 16
+  },
+  resetButtonText: {
+    color: "#ffffff",
+    fontSize: 15,
+    fontWeight: "900",
+    textAlign: "center"
   }
 });
